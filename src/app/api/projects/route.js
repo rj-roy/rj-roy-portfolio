@@ -2,6 +2,54 @@ export async function GET() {
   const projects = [
     {
       id: 1,
+      title: 'Startup Forge',
+      slug: 'startup-forge',
+      stack: 'Full Stack',
+      image: 'https://i.ibb.co/5VHNxsF/image.png',
+      tags: ['React', 'Next.js', 'Node.js', 'MongoDB', 'Express', 'JWT', 'Stripe', 'REST API', 'Vercel', 'Railway'],
+      technologies: ['React', 'Next.js', 'Node.js', 'MongoDB', 'JWT', 'Stripe', 'Express', 'Tailwind', 'Vercel', 'Railway'],
+      liveUrl: 'https://startup-forge-ivory.vercel.app/',
+      githubUrl: 'https://github.com/rj-roy/startup-forge',
+
+      description: 'A modern full-stack platform for connecting founders, collaborators, and admins in a startup ecosystem.',
+      projectDetails: "Startup Forge is a multi-role marketplace built to simplify how early-stage startups discover talent and how collaborators discover meaningful opportunities. The experience spans a polished public website, secure authentication, role-based dashboards, and a REST API that powers startup, opportunity, application, and subscription workflows.",
+      keyFeatures: [
+        'Role-based user flows for founders, collaborators, and admins',
+        'Secure authentication with Better Auth and session handling',
+        "Protected dashboards and route-based access control",
+        "Startup and opportunity discovery pages",
+        "Application submission and tracking",
+        "Subscription and plan management flows",
+        "Cloudinary image upload support",
+        "Modern theme support with light/dark switching",
+      ]
+    },
+    {
+      id: 2,
+      title: 'Hire Loop',
+      slug: 'hire-loop',
+      stack: 'Full Stack',
+      image: 'https://i.ibb.co/ccSk5p2W/image.png',
+      tags: ['React', 'Next.js', 'Node.js', 'MongoDB', 'Express', 'JWT', 'Stripe', 'REST API', 'Vercel', 'Railway'],
+      technologies: ['React', 'Next.js', 'Node.js', 'MongoDB', 'JWT', 'Stripe', 'Express', 'Tailwind', 'Vercel', 'Railway'],
+      liveUrl: 'https://hire-loop-ten.vercel.app/',
+      githubUrl: 'https://github.com/rj-roy/hire-loop',
+
+      description: 'A full-stack modern AI-powered recruitment and career platform',
+      projectDetails: "HireLoop is a modern AI-powered recruitment and career platform that bridges the gap between job seekers, startups, recruiters, collaborators, and administrators. Rather than functioning as a traditional job board, HireLoop creates an ecosystem where talent discovery, startup hiring, collaboration, and opportunity management happen within one centralized platform. The platform is built with scalability and role- based architecture in mind, allowing different users to access specialized dashboards and workflows according to their responsibilities.Whether someone is searching for employment, building a startup team, recruiting skilled professionals, or managing platform operations, HireLoop provides dedicated tools that simplify the entire recruitment lifecycle. Designed with performance, security, and user experience as core priorities, HireLoop incorporates authentication, subscription plans, opportunity management, intelligent search, and administrative controls into a single seamless application.",
+      keyFeatures: [
+        "HireLoop supports multiple user roles, each with its own dashboard and permissions.",
+        "The platform provides secure authentication using JWT, Protected Routes, Role based authentication",
+        "Every user accesses a customized dashboard designed specifically for their workflow.",
+        "Users can create and manage hiring opportunities with detailed information",
+        "Startup owners can create professional startup pages",
+        "HireLoop includes a flexible subscription model supporting different user needs.",
+        "Users maintain complete professional profiles",
+        "Powerful search functionality allows users to find quickly",
+      ]
+    },
+    {
+      id: 3,
       title: 'Medi Queue',
       slug: 'medi-queue',
       stack: 'Full Stack',
@@ -29,7 +77,7 @@ export async function GET() {
       ]
     },
     {
-      id: 2,
+      id: 4,
       title: 'Keen Keeper',
       slug: 'keen-keeper',
       stack: 'Front-End',
@@ -52,7 +100,7 @@ export async function GET() {
       ]
     },
     {
-      id: 3,
+      id: 5,
       title: 'Shelf Care',
       slug: 'shelf-care',
       stack: 'Full Stack',
@@ -80,7 +128,7 @@ export async function GET() {
       ]
     },
     {
-      id: 4,
+      id: 6,
       title: 'Digi Tools',
       slug: 'digi-tools',
       stack: 'Front-End',

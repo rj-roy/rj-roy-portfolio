@@ -16,7 +16,7 @@ import {
   SiJsonwebtokens,
   SiNetlify
 } from "react-icons/si";
-import { FaCcStripe, FaGitAlt } from "react-icons/fa";
+import { FaCcStripe, FaGitAlt, FaStripe } from "react-icons/fa";
 import { SiShadcnui } from "react-icons/si";
 
 export const techIconMap = {
@@ -41,6 +41,7 @@ export const techIconMap = {
   Vercel: SiVercel,
   BetterAuth: SiBetterauth,
   Netlify: SiNetlify,
+  Stripe: FaStripe,
 };
 
 export const getTechIcon = (techName) => {
