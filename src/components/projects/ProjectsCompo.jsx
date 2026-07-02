@@ -143,6 +143,7 @@ const ProjectsCompo = () => {
                                                 width={1920}
                                                 height={1080}
                                                 className="rounded-2xl"
+                                                loaing="eager"
                                             />
                                         </div>
                                     </motion.div>
