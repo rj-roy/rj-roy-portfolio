@@ -1,7 +1,31 @@
 export async function GET() {
   const projects = [
     {
-      id: 1,
+      id: 2,
+      title: 'Forever Paws',
+      slug: 'forever-paws',
+      stack: 'Full Stack',
+      image: 'https://i.ibb.co/ZRFMCnyD/image.png',
+      tags: ['React', 'Next.js', 'Node.js', 'MongoDB', 'Express', 'JWT', 'REST API', 'Vercel', 'Render', 'Cloudinary' ,'Better Auth', 'Gemini Api'],
+      technologies: ['React', 'Next.js', 'Node.js', 'MongoDB', 'JWT', 'Express', 'Tailwind', 'Vercel', 'Render', 'Cloudinary', 'Better Auth', 'Gemini Api'],
+      liveUrl: 'https://forever-paws-nine.vercel.app/',
+      githubUrl: 'https://github.com/rj-roy/forever-paws',
+
+      description: 'A modern full-stack platform for adopt a pet or list a pet to get adopted',
+      projectDetails: "Forever Paws is a full-stack pet adoption platform built with a Next.js 16 frontend and Express.js backend, connecting shelters and foster caregivers with adopters through a structured, trust-based system. The platform features role-based access (Adopter/Shelter), a real adoption application lifecycle, and an AI-powered chat assistant integrated with the Google Gemini API that helps users search for pets conversationally using natural language queries. Key features include pet browsing with filters, detailed pet profiles with image galleries, dashboards for managing listings and applications, and a dark/light mode UI powered by Tailwind CSS.",
+      keyFeatures: [
+        'Role-Based Access: Three user roles (adopter, shelter, admin) with separate dashboards, route guards, and permissions.',
+        'AI Chat Assistant (Gemini API)',
+        "Protected dashboards and route-based access control",
+        "Pet Listings & Browsing: Search/filter pets by type, age, size, location; detailed pet profiles with image galleries, health badges, and temperament tags.",
+        "Adoption Application Lifecycle",
+        "Authentication: Email/password and Google OAuth via Better Auth with MongoDB adapter.",
+        "Image Hosting: Cloudinary integration for pet photo uploads and galleries.",
+        "Rate-Limited API: Express backend with rate limiting (60 req/min public, 3 req/min for POST).",
+      ]
+    },
+    {
+      id: 3,
       title: 'Startup Forge',
       slug: 'startup-forge',
       stack: 'Full Stack',
@@ -25,7 +49,7 @@ export async function GET() {
       ]
     },
     {
-      id: 2,
+      id: 4,
       title: 'Hire Loop',
       slug: 'hire-loop',
       stack: 'Full Stack',
@@ -49,7 +73,7 @@ export async function GET() {
       ]
     },
     {
-      id: 3,
+      id: 5,
       title: 'Medi Queue',
       slug: 'medi-queue',
       stack: 'Full Stack',
@@ -77,7 +101,7 @@ export async function GET() {
       ]
     },
     {
-      id: 4,
+      id: 6,
       title: 'Keen Keeper',
       slug: 'keen-keeper',
       stack: 'Front-End',
@@ -100,7 +124,7 @@ export async function GET() {
       ]
     },
     {
-      id: 5,
+      id: 7,
       title: 'Shelf Care',
       slug: 'shelf-care',
       stack: 'Full Stack',
@@ -128,7 +152,7 @@ export async function GET() {
       ]
     },
     {
-      id: 6,
+      id: 8,
       title: 'Digi Tools',
       slug: 'digi-tools',
       stack: 'Front-End',

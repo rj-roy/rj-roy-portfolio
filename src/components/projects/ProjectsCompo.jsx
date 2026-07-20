@@ -94,7 +94,7 @@ const ProjectsCompo = () => {
                 {/* Projects Grid */}
                 <motion.div
                     className="space-y-10 md:space-y-16"
-                    initial="hidden"
+                    initial="visible"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
                     variants={containerVariants}
