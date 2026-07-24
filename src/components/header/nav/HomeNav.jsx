@@ -1,11 +1,31 @@
 'use client'
 import { Briefcase, GanttChart, GripVertical, House, Mail, MessageSquareText, Shapes, User } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 const HomeNav = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+
+
+    useEffect(() => {
+        const update = () => {
+            setMenuOpen(
+                document.body.getAttribute("data-hero-visible") === "false"
+            );
+        };
+
+        update();
+        const observer = new MutationObserver(update);
+        observer.observe(document.body, {
+            attributes: true,
+            attributeFilter: ["data-hero-visible"],
+        });
+
+        return () => observer.disconnect();
+    }, []);
+    
+  
     const links = [
         { name: "Home", href: "#home", icon: House },
         { name: "Projects", href: "#projects", icon: GripVertical },
@@ -20,8 +40,8 @@ const HomeNav = () => {
     const renderedLinks = links.map((link) => (
         <Link key={link.name} href={link.href}
             className={`group cursor-none relative`}>
-            <link.icon strokeWidth={1.2} />
-            <span className="absolute -top-0.5 -translate-x-55 opacity-0 w-30 group-hover:opacity-100 group-hover:-translate-x-35 bg-gray-600 px-3 py-1 rounded text-white transition-all duration-350 text-center pointer-events-none">
+            <link.icon strokeWidth={1.2} className="text-white hover:text-primary "/>
+            <span className="absolute -top-0.5 -translate-x-55 opacity-0 w-30 group-hover:opacity-100 group-hover:-translate-x-35 bg-gray-600 px-3 py-1 rounded text-primary transition-all duration-350 text-center pointer-events-none">
                 {link.name}
                 <span className="absolute -right-3 top-1/2 -translate-y-1/2 w-0 h-0 border-t- [16px] border-t-transparent border-b-15 border-b-transparent border-l-16 border-l-gray-600">
                 </span>

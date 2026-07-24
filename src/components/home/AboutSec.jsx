@@ -71,10 +71,12 @@ export default function AboutSec() {
                             transition={{ duration: 0.6, delay: 0.45 }}
                             className="text-base sm:text-lg leading-relaxed text-gray-500 dark:text-gray-400"
                         >
-                            Primarily working with{' '}
-                            <span className="font-semibold text-gray-800 dark:text-gray-200">
-                                React, Next.js, and Node.js
+                            My programming journey began with curiosity about how websites work. What started with learning HTML and CSS quickly grew into exploring JavaScript, React, and full-stack development. Over time, I expanded my skills to  
+                            <span className="font-semibold text-gray-800 dark:text-gray-200 mx-2">
+                                TypeScript, React, Next.js, and Node.js, Express.js, MongoDb
                             </span>
+                             allowing me to build complete applications from frontend interfaces to backend services and databases. Every project has been an opportunity to learn something new, refine my problem-solving skills, and become a better engineer.{' '}
+                            
                             , I&apos;ve built everything from AI-powered developer tools to full
                             SaaS platforms. I care deeply about clean architecture and
                             shipping fast without breaking things.
