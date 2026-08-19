@@ -241,8 +241,7 @@ export default function TopHeroSec() {
                     transition={{ duration: 0.8, delay: 0.5 }}
                     className="text-gray-700 dark:text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10"
                 >
-                    Full Stack Developer building intelligent systems — AI Driven <br />
-                    Turning research into products.
+                    Engineering ideas into production-ready products. Full-Stack Developer focused on modern Secure Web applications, APIs, and scalable systems.
                 </motion.p>
 
                 {/* Buttons */}
@@ -273,7 +272,7 @@ export default function TopHeroSec() {
 
                         </motion.button>
                     </Link>
-                    
+
                     <motion.a
                         href="https://github.com/rj-roy"
                         target='blank'
