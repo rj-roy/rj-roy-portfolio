@@ -1,32 +1,41 @@
 "use client";
 
-import { useTheme } from "next-themes";
-import { Moon, Sun } from "@gravity-ui/icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Moon, Sun } from "lucide-react";
+import { DEFAULT_THEME, THEME_KEY } from "@/lib/theme";
+
+function readStoredTheme() {
+  try {
+    const t = window.localStorage.getItem(THEME_KEY);
+    return t === "light" || t === "dark" ? t : DEFAULT_THEME;
+  } catch {
+    return DEFAULT_THEME;
+  }
+}
 
 export default function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const [theme, setTheme] = useState(readStoredTheme);
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
-  const isDark = resolvedTheme === "dark";
+  const toggle = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.dataset.theme = next;
+    document.documentElement.classList.toggle("dark", next === "dark");
+    try {
+      window.localStorage.setItem(THEME_KEY, next);
+    } catch {
+      /* noop */
+    }
+  };
 
   return (
     <button
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="flex items-center justify-center w-11 h-11 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 transition-all duration-300 hover:scale-105"
+      onClick={toggle}
+      aria-label="Toggle theme"
+      className="theme-toggle"
     >
-      {isDark ? (
-        <Moon className="size-5 text-cyan-400" />
-      ) : (
-        <Sun className="size-5 text-yellow-500" />
-      )}
+      <Sun className="icon-sun" />
+      <Moon className="icon-moon" />
     </button>
   );
 }

@@ -1,4 +1,4 @@
-import { Fraunces } from 'next/font/google'
+import { Fraunces, Inter, Manrope, Space_Grotesk, Space_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 
 export const fraunces = Fraunces({
@@ -6,6 +6,20 @@ export const fraunces = Fraunces({
   weight: ['100', '300', '400', '700'],
   style: ['normal', 'italic'],
   variable: '--font-fraunces',
+  display: 'swap',
+})
+
+export const manrope = Manrope({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-manrope',
+  display: 'swap',
+})
+
+export const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-space-mono',
   display: 'swap',
 })
 
@@ -21,5 +35,18 @@ export const cabinet = localFont({
     { path: '../cabinet-grotesk/CabinetGrotesk-Black.woff2', weight: '900' },
   ],
   variable: '--font-cabinet',
+  display: 'swap',
+})
+
+export const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+export const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-grotesk',
   display: 'swap',
 })

@@ -1,0 +1,225 @@
+/* ============================================================
+   Shared UI primitives used across routes
+   (eyebrow, buttons, cards, reveal, cursor, theme toggle)
+   ============================================================ */
+
+.eyebrow {
+  font-family: "Space Mono", var(--font-space-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.reveal {
+  opacity: 0;
+  animation: revealUp 0.7s var(--ease) 0.05s forwards;
+}
+.reveal:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.reveal:nth-child(3) {
+  animation-delay: 0.19s;
+}
+.reveal:nth-child(4) {
+  animation-delay: 0.26s;
+}
+.reveal:nth-child(5) {
+  animation-delay: 0.33s;
+}
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 760px) {
+  .three-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btn-iris {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  transition: transform var(--dur-s) var(--ease), background var(--dur-s),
+    color var(--dur-s);
+}
+.btn-iris.solid {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn-iris.ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+.btn-iris:hover {
+  transform: translateY(-2px);
+}
+.btn-iris.solid:hover {
+  background: transparent;
+  color: var(--accent);
+}
+.btn-iris.ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.cap-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  transition: border-color var(--dur-s), transform var(--dur-s);
+}
+.cap-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+.cap-card svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 1.5;
+  margin-bottom: 10px;
+}
+.cap-card h4 {
+  font-size: 14px;
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: 0;
+}
+.cap-card p {
+  font-size: 12.5px;
+  color: var(--text-faint);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Theme toggle
+   ============================================================ */
+.theme-toggle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color var(--dur-s), border-color var(--dur-s);
+}
+.theme-toggle svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+[data-theme="light"] .icon-moon,
+[data-theme="dark"] .icon-sun {
+  display: block;
+}
+[data-theme="light"] .icon-sun,
+[data-theme="dark"] .icon-moon {
+  display: none;
+}
+@media (max-width: 767px) {
+  .theme-toggle {
+    width: 42px;
+    height: 42px;
+  }
+}
+@media (max-width: 380px) {
+  .theme-toggle {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ============================================================
+   Custom cursor (desktop, fine pointer only)
+   ============================================================ */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--cursor-accent, var(--accent));
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--cursor-accent, var(--accent));
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.2s, height 0.2s, opacity 0.2s;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cursor-dot,
+  .cursor-ring {
+    opacity: 1;
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}

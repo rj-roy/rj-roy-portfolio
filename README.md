@@ -61,32 +61,39 @@ rj-roy/
 │   └── projects.json          # Projects data
 ├── src/
 │   ├── app/
-│   │   ├── (home)/            # Home page route
-│   │   ├── (pages)/           # Other pages (projects, etc.)
+│   │   ├── (home)/            # Home page route (single-page portfolio)
+│   │   ├── (pages)/           # Other pages (projects, resume)
 │   │   ├── api/               # API routes
-│   │   ├── fonts/             # Custom fonts (Cabinet, Fraunces)
+│   │   ├── base/              # Shared design tokens + UI primitives
+│   │   ├── portfolio/         # Home page design system (portfolio.css)
+│   │   ├── fonts/             # Custom fonts (Cabinet, Fraunces, Inter, Space Grotesk)
 │   │   ├── globals.css        # Global styles
 │   │   └── layout.jsx         # Root layout
 │   ├── components/
-│   │   ├── home/              # Home page components
-│   │   │   ├── HeroSec.jsx
-│   │   │   ├── AboutSec.jsx
-│   │   │   ├── SkillsSec.jsx
-│   │   │   ├── Projects.jsx
-│   │   │   ├── TestimonialsSec.jsx
-│   │   │   └── ExperienceSection.jsx
+│   │   ├── portfolio/         # Home page sections
+│   │   │   ├── SiteHeader.jsx
+│   │   │   ├── Hero.jsx
+│   │   │   ├── StackMarquee.jsx
+│   │   │   ├── Work.jsx
+│   │   │   ├── Skills.jsx
+│   │   │   ├── WhyPartner.jsx
+│   │   │   ├── Process.jsx
+│   │   │   ├── Journey.jsx
+│   │   │   ├── Notes.jsx
+│   │   │   ├── Contact.jsx
+│   │   │   ├── SiteFooter.jsx
+│   │   │   └── Reveal.jsx
 │   │   ├── projects/          # Project pages
 │   │   ├── header/            # Navigation
-│   │   ├── footer/            # Footer
-│   │   ├── contact/           # Contact section
 │   │   ├── ui/                # UI components
 │   │   │   ├── CustomCursor.jsx
 │   │   │   ├── BackToTop.jsx
 │   │   │   ├── ThemeToggle.jsx
 │   │   │   └── ProjectCard.jsx
-│   │   └── providers/         # Context providers
+│   │   └── Copyright.jsx
 │   ├── lib/
 │   │   ├── data.js            # Data fetching utilities
+│   │   ├── site.js            # Site content (nav, skills, journey, journal…)
 │   │   └── techIcons.js       # Technology icons mapping
 │   └── assets/                # Static assets
 ├── eslint.config.mjs          # ESLint configuration
@@ -154,12 +161,18 @@ npm run lint         # Run ESLint on the codebase
 ## 🎯 Features
 
 ### Home Page
-- **Hero Section** - Captivating introduction with call-to-action
-- **Projects Showcase** - Filterable project cards with live demos and GitHub links
-- **Skills Section** - Technology stack and expertise display
-- **About Section** - Personal background and professional journey
-- **Testimonials** - Social proof from collaborators or clients
-- **Contact Section** - Easy contact form for inquiries
+Single scrolling page built from `src/components/portfolio/*`, styled by `src/app/portfolio/portfolio.css` (scoped to `.pf`, dark default + light theme).
+- **Sticky Header** - Scroll-spy nav, mobile menu and theme toggle
+- **Hero Section** - Availability badge, headline, CV download and live stats
+- **Stack Marquee** - Infinite technology ticker
+- **Featured Work** - First four projects from `/api/projects` with case-study, live and source links
+- **Skills Section** - Frontend / Backend / Data / Ship-with groups with brand icons
+- **Why Partner** - Capability cards
+- **How I Work** - Three-step delivery process
+- **Journey** - Availability, shipped platforms and education timeline
+- **Notes** - Horizontally scrollable journal cards
+- **Contact** - Email form that opens a pre-filled mail draft, plus direct email/WhatsApp
+- **Footer** - Socials and giant wordmark
 
 ### Navigation
 - **Responsive Header** - Dynamic navigation with mobile menu
@@ -168,9 +181,10 @@ npm run lint         # Run ESLint on the codebase
 
 ### User Experience
 - **Dark/Light Theme** - Toggle between themes with preference persistence
-- **Custom Cursor** - Interactive cursor with hover effects
+- **Custom Cursor** - Interactive cursor that follows the active page palette
+- **Scroll Reveal** - IntersectionObserver-driven section reveals
 - **Matrix Loader** - Eye-catching loading animation
-- **Smooth Transitions** - Framer Motion animations throughout
+- **Smooth Transitions** - Framer Motion animations on inner pages
 - **Mobile Responsive** - Optimized for all screen sizes (320px+)
 
 ---
@@ -180,13 +194,19 @@ npm run lint         # Run ESLint on the codebase
 ### Core Components
 | Component | Purpose |
 |-----------|---------|
-| `NavHeader` | Main navigation component |
-| `HeroSec` | Hero/banner section |
-| `Projects` | Projects showcase grid |
-| `SkillsSec` | Skills and technologies |
-| `AboutSec` | About me section |
-| `TestimonialsSection` | Client/colleague testimonials |
-| `ContactSec` | Contact form |
+| `portfolio/SiteHeader` | Sticky nav, scroll spy, mobile menu, theme toggle |
+| `portfolio/Hero` | Hero/banner section |
+| `portfolio/StackMarquee` | Infinite technology ticker |
+| `portfolio/Work` | Featured projects grid |
+| `portfolio/Skills` | Grouped skills with tech icons |
+| `portfolio/WhyPartner` | Capability cards |
+| `portfolio/Process` | Delivery process steps |
+| `portfolio/Journey` | Experience / education timeline |
+| `portfolio/Notes` | Journal notes scroller |
+| `portfolio/Contact` | Contact form and direct links |
+| `portfolio/SiteFooter` | Footer with socials and wordmark |
+| `portfolio/Reveal` | Scroll-triggered reveal wrapper |
+| `NavHeader` | Inner-page navigation + theme toggle |
 | `ThemeToggle` | Dark/light mode switcher |
 | `CustomCursor` | Custom cursor implementation |
 | `BackToTop` | Scroll-to-top button |

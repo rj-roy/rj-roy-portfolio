@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alex Mercer — Full-Stack Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0908; --bg-soft:#121110; --card:#161412; --card-2:#1c1917;
+    --red:#c2261c; --red-bright:#e2412f; --red-deep:#3a0c08;
+    --ink:#f3ede8; --muted:#a89f97; --line:#2a2624;
+    box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
+  h1,h2,h3,.disp{font-family:"Space Grotesk",Inter,sans-serif}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:12.5px;letter-spacing:.14em;color:var(--red-bright);font-weight:600;margin:0 0 10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:8px;font-weight:600;font-size:14.5px;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-bright)}
+  .btn-outline{border-color:var(--line);color:var(--ink);background:transparent}
+  .btn-outline:hover{border-color:var(--muted)}
+  .btn-sm{padding:9px 16px;font-size:13px;border-radius:7px}
+  section{padding:88px 0}
+  @media(max-width:720px){section{padding:56px 0}}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:50;background:rgba(10,9,8,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1180px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px}
+  .brand-mark{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,var(--red),#7a1811);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+  .nav-links{display:flex;gap:34px;font-size:14px;color:var(--muted)}
+  .nav-links a:hover{color:var(--ink)}
+  @media(max-width:800px){.nav-links{display:none}}
+
+  /* HERO */
+  .hero{position:relative;padding:64px 0 0;overflow:hidden}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:20px;align-items:center}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+  .hero h1{font-size:clamp(34px,5.2vw,54px);line-height:1.08;font-weight:700;margin:0 0 18px;letter-spacing:-.01em}
+  .hero h1 b{font-weight:700;color:#fff}
+  .hero p{color:var(--muted);font-size:16px;line-height:1.6;max-width:440px;margin:0 0 30px}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-figure{position:relative;height:460px;border-radius:18px;overflow:hidden;background:
+      radial-gradient(60% 80% at 65% 30%, rgba(226,65,47,.55), transparent 60%),
+      repeating-linear-gradient(0deg,rgba(226,65,47,.14) 0 1px,transparent 1px 34px),
+      repeating-linear-gradient(90deg,rgba(226,65,47,.14) 0 1px,transparent 1px 34px),
+      linear-gradient(180deg,#150807,#050403);}
+  .hero-figure::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 100%,rgba(0,0,0,0) 0%,rgba(0,0,0,.85) 85%)}
+  .silhouette{position:absolute;bottom:-4%;left:50%;transform:translateX(-50%);width:78%;max-width:320px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6))}
+  @media(max-width:860px){.hero-figure{height:320px;margin-top:20px}}
+
+  /* stack strip */
+  .stack{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:60px}
+  .stack-row{display:flex;justify-content:space-between;align-items:center;gap:28px;padding:26px 24px;overflow-x:auto;color:#7d766f;font-weight:600;font-size:15px;letter-spacing:.02em}
+  .stack-row span{white-space:nowrap;opacity:.85}
+
+  /* SECTION HEAD */
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:38px;flex-wrap:wrap}
+  .section-head h2{font-size:clamp(24px,3vw,32px);margin:0;font-weight:700;letter-spacing:-.01em}
+
+  /* PROJECT CARDS */
+  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:760px){.proj-grid{grid-template-columns:1fr}}
+  .proj-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .proj-thumb{height:190px;position:relative;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600}
+  .proj-body{padding:20px 22px 24px}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .proj-body h3{margin:12px 0 8px;font-size:19px;font-weight:700}
+  .proj-body p{margin:0 0 16px;color:var(--muted);font-size:14px;line-height:1.55}
+  .arrow-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex:none;color:var(--muted)}
+  .tags{display:flex;gap:8px;flex-wrap:wrap}
+  .tag{font-size:11.5px;padding:5px 10px;border-radius:20px;background:var(--card-2);border:1px solid var(--line);color:var(--muted)}
+  .tag.lead{background:rgba(194,38,28,.16);border-color:rgba(194,38,28,.4);color:#ff8f80}
+
+  .t-fintech{background:linear-gradient(160deg,#3a0c08,#0d0605)}
+  .t-saas{background:linear-gradient(160deg,#241a35,#0d0a13)}
+  .t-ecom{background:linear-gradient(160deg,#1b1b1b,#050505)}
+  .t-ai{background:linear-gradient(160deg,#0e2430,#04141a)}
+
+  /* WHY PARTNER */
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:760px){.why-grid{grid-template-columns:1fr}}
+  .why-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+  .why-card .glyph{position:absolute;top:22px;left:22px;width:46px;height:46px;border-radius:10px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:18px}
+  .why-card h3{margin:0 0 8px;font-size:17px;font-weight:700}
+  .why-card p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.5}
+  .why-card.accent{background:linear-gradient(140deg,#2c0906,#0c0504)}
+
+  /* EXPERIENCE */
+  .exp-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:start}
+  @media(max-width:800px){.exp-grid{grid-template-columns:1fr}}
+  .exp-photo{border-radius:16px;height:420px;background:
+    radial-gradient(70% 70% at 60% 20%,rgba(226,65,47,.5),transparent 60%),
+    repeating-linear-gradient(0deg,rgba(226,65,47,.12) 0 1px,transparent 1px 30px),
+    linear-gradient(180deg,#150807,#050403)}
+  .timeline{border-left:1px solid var(--line);padding-left:26px;display:flex;flex-direction:column;gap:34px}
+  .timeline .role{position:relative}
+  .timeline .role::before{content:"";position:absolute;left:-31px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--red-bright)}
+  .timeline .co{color:var(--red-bright);font-size:13px;font-weight:600;margin-bottom:4px}
+  .timeline h4{margin:0 0 6px;font-size:17px;font-weight:700}
+  .timeline ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13.5px;line-height:1.6}
+
+  /* FILM */
+  .film-wrap{text-align:center;margin-bottom:38px}
+  .film-frame{position:relative;border-radius:18px;overflow:hidden;height:min(56vw,480px);background:
+    linear-gradient(120deg,#0c1a24,#050708 55%);border:1px solid var(--line)}
+  .play{position:absolute;inset:0;margin:auto;width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center}
+  .play::after{content:"";border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent #fff;margin-left:4px}
+
+  /* TESTIMONIALS */
+  .test-row{display:flex;gap:16px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+  .test-row::-webkit-scrollbar{display:none}
+  .test-card{flex:0 0 190px;border-radius:14px;overflow:hidden;position:relative;height:250px;background:linear-gradient(160deg,#242220,#0a0908);border:1px solid var(--line)}
+  .test-card .name{position:absolute;bottom:14px;left:14px;right:14px;font-size:14px;font-weight:700}
+  .test-card .role{position:absolute;bottom:0;left:14px;font-size:11.5px;color:var(--muted);transform:translateY(20px)}
+  .test-card .name{bottom:32px}
+  .test-play{position:absolute;top:14px;left:14px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center}
+  .test-play::after{content:"";border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent #fff;margin-left:2px}
+  .arrows{display:flex;gap:8px}
+  .arrows button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+
+  /* CTA */
+  .cta-box{background:linear-gradient(150deg,#4a0f0a,#170604 70%);border:1px solid var(--line);border-radius:22px;padding:60px 30px;text-align:center}
+  .cta-box h2{font-size:clamp(24px,4vw,34px);margin:0 0 10px}
+  .cta-box p{color:#e9c9c2;margin:0 0 26px;font-size:14.5px}
+  .cta-form{display:flex;gap:10px;max-width:420px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+  .cta-form input{flex:1;min-width:220px;padding:13px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.25);color:#fff;font-size:14px}
+  .cta-form input::placeholder{color:#c9b3ae}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding-top:50px}
+  .foot-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;padding-bottom:30px}
+  .foot-links{display:flex;gap:22px;font-size:13.5px;color:var(--muted)}
+  .foot-social{display:flex;gap:12px}
+  .foot-social span{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--muted)}
+  .foot-bottom{border-top:1px solid var(--line);padding:16px 0;font-size:12.5px;color:#6b655f;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  .giant{font-family:"Space Grotesk",sans-serif;font-weight:700;text-align:center;line-height:.85;color:transparent;-webkit-text-stroke:1px #3a3532;font-size:clamp(60px,15vw,180px);margin:10px 0 -18px;user-select:none}
+
+  @media (prefers-reduced-motion: no-preference){
+    .btn,.arrow-btn,.arrows button{transition:background .15s ease,border-color .15s ease}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand"><span class="brand-mark">AM</span> Alex Mercer</div>
+    <div class="nav-links">
+      <a href="#projects">Projects</a><a href="#why">Solutions</a><a href="#stack">Stack</a><a href="#impact">Impact</a>
+    </div>
+    <a href="#contact" class="btn btn-red btn-sm">Let's Talk</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1>Engineering <b>scalable</b> architecture for modern <b>enterprises</b></h1>
+        <p>Full-Stack Software Engineer specializing in performant React applications, robust Node.js backend systems, and cloud optimization.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-red">Let's Talk</a>
+          <a href="#" class="btn btn-outline">Download Resume ↓</a>
+        </div>
+      </div>
+      <div class="hero-figure"><div class="silhouette"></div></div>
+    </div>
+  </div>
+  <div class="stack" id="stack">
+    <div class="wrap stack-row">
+      <span>node.js</span><span>redis</span><span>NEXT.js</span><span>aws</span><span>GraphQL</span><span>TypeScript</span><span>PostgreSQL</span>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">Work</p><h2>Featured Solutions &amp; Projects</h2></div>
+      <a href="#" class="btn btn-outline btn-sm">All case studies ↗</a>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-thumb t-fintech">Fintech dashboard preview</div>
+        <div class="proj-body">
+          <div class="proj-top"><h3 style="margin:0">Fintech Ledger API</h3><span class="arrow-btn">↗</span></div>
+          <p>High-throughput transactional data engine processing 40M+ daily events with sub-10ms latency.</p>
+          <div class="tags"><span class="tag lead">Lead Engineer</span><span class="tag">Node.js</span><span class="tag">Postgres</span><span class="tag">Kafka</span></div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-thumb t-saas">SaaS analytics preview</div>
+        <div class="proj-body">
+          <div class="proj-top"><h3 style="margin:0">SaaS Analytics Dashboard</h3><span class="arrow-btn">↗</span></div>
+          <p>Real-time event monitoring system with complex data visualization for enterprise ops teams.</p>
+          <div class="tags"><span class="tag lead">Full Stack</span><span class="tag">Next.js</span><span class="tag">TS</span><span class="tag">ClickHouse</span></div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-thumb t-ecom">E-commerce preview</div>
+        <div class="proj-body">
+          <div class="proj-top"><h3 style="margin:0">E-Commerce Orchestrator</h3><span class="arrow-btn">↗</span></div>
+          <p>Serverless headless checkout platform handling peak Black Friday load at 99.99% availability.</p>
+          <div class="tags"><span class="tag lead">Architect</span><span class="tag">AWS Lambda</span><span class="tag">GraphQL</span></div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-thumb t-ai">AI pipeline preview</div>
+        <div class="proj-body">
+          <div class="proj-top"><h3 style="margin:0">AI Content Pipeline</h3><span class="arrow-btn">↗</span></div>
+          <p>Automated media processing workflow integrated with LLM endpoints and vector search.</p>
+          <div class="tags"><span class="tag lead">Platform Lead</span><span class="tag">Python</span><span class="tag">OpenAI</span><span class="tag">Pinecone</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <p class="eyebrow">Why Partner With Me</p>
+    <h2 style="font-size:clamp(24px,3.4vw,34px);margin:0 0 34px">Why Partner With Me Today And Always?</h2>
+    <div class="why-grid">
+      <div class="why-card"><div class="glyph">&lt;/&gt;</div><h3>Production-Grade Reliability</h3><p>Clean, thoroughly tested, enterprise-ready source code with full observability baked in from day one.</p></div>
+      <div class="why-card accent"><div class="glyph">⚡</div><h3>Performance First Mindset</h3><p>Core Web Vitals, ultra-fast render, and aggressive asset optimization across every critical path.</p></div>
+      <div class="why-card"><div class="glyph">☁</div><h3>Scalable Cloud Architecture</h3><p>Serverless microservices, secure API design, and efficient data pipelines built to grow with load.</p></div>
+      <div class="why-card accent"><div class="glyph">◎</div><h3>Business-Driven Decisions</h3><p>Cross-functional alignment, clear technical communication, and product strategy that ships outcomes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="impact">
+  <div class="wrap">
+    <p class="eyebrow" style="text-align:center">Experience</p>
+    <h2 style="text-align:center;font-size:clamp(24px,3.4vw,34px);margin:0 0 44px">Professional milestones &amp; impact</h2>
+    <div class="exp-grid">
+      <div class="exp-photo"></div>
+      <div class="timeline">
+        <div class="role">
+          <div class="co">SM Technology</div>
+          <h4>UX/UI &amp; Frontend Architecture Lead — Sept 2024 – Present</h4>
+          <ul><li>Spearheaded the development of performant web architectures, aligning user experience with robust system design.</li><li>Optimized core rendering by implementing lazy-loading strategies and advanced state management pipelines.</li></ul>
+        </div>
+        <div class="role">
+          <div class="co">Artificer</div>
+          <h4>Full-Stack Developer — Dec 2025 – Feb 2026</h4>
+        </div>
+        <div class="role">
+          <div class="co">Surwave</div>
+          <h4>Full-Stack Developer — Dec 2025 – Feb 2026</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap film-wrap">
+    <p class="eyebrow">The Engineer Behind The Code</p>
+    <h2 style="font-size:clamp(24px,3.4vw,34px);margin:0 0 34px">A short film on my engineering philosophy</h2>
+    <div class="film-frame"><span class="play"></span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">Impact</p><h2>Engineering Impact &amp; Client Feedback</h2></div>
+      <div class="arrows"><button>←</button><button>→</button></div>
+    </div>
+    <div class="test-row">
+      <div class="test-card"><span class="test-play"></span><div class="name">Marcus Vialli</div><div class="role">Lead Dynamics Engineer</div></div>
+      <div class="test-card"><span class="test-play"></span><div class="name">Jessica James</div><div class="role">Aerodynamicist</div></div>
+      <div class="test-card"><span class="test-play"></span><div class="name">Dr. Anika Reinhardt</div><div class="role">Aerodynamicist</div></div>
+      <div class="test-card"><span class="test-play"></span><div class="name">James Okonkwo</div><div class="role">Client Asset Broker</div></div>
+      <div class="test-card"><span class="test-play"></span><div class="name">Michael Tan</div><div class="role">Product Director</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta-box">
+      <h2>Let's build something scalable.</h2>
+      <p>Drop your email — I reply within one business day.</p>
+      <form class="cta-form" onsubmit="event.preventDefault()">
+        <input type="email" placeholder="you@company.com" required>
+        <button class="btn btn-red" type="submit">Let's Talk</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <h3 style="margin:0 0 12px;font-size:22px">Alex Mercer</h3>
+        <div class="foot-links"><a href="#projects">Projects</a><a href="#why">Solutions</a><a href="#stack">Stack</a><a href="#impact">Impact</a></div>
+      </div>
+      <div class="foot-social"><span>in</span><span>gh</span><span>tw</span><span>x</span></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2024 Alex Mercer Inc. All rights reserved.</span>
+      <span>Privacy Policy · Terms of Service</span>
+    </div>
+    <div class="giant">ALEX MERCER</div>
+  </div>
+</footer>
+
+</body>
+</html>

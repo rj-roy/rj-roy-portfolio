@@ -1,13 +1,19 @@
 import "./globals.css";
-import { cabinet, fraunces } from "./fonts/styles/FontStyle";
+import {
+  cabinet,
+  fraunces,
+  inter,
+  manrope,
+  spaceGrotesk,
+  spaceMono,
+} from "./fonts/styles/FontStyle";
+import { themeScript } from "@/lib/theme";
 import CustomCursor from "@/components/ui/CustomCursor";
-import Provider from "@/components/Provider";
-import BackToTop from "@/components/ui/BackToTop";
-import Copyright from "@/components/Copyright";
 
 export const metadata = {
-  title: "Rj Roy",
-  description: "Next.js Full-Stack Developer",
+  title: "Jibon Roy — Full-Stack Developer",
+  description:
+    "Engineering ideas into production-ready products. Full-Stack Developer focused on modern secure web applications, APIs, and scalable systems.",
 };
 
 export default function RootLayout({ children }) {
@@ -15,20 +21,13 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`h-full ${fraunces.variable} ${cabinet.variable}`}
+      className={`${fraunces.variable} ${manrope.variable} ${spaceMono.variable} ${cabinet.variable} ${inter.variable} ${spaceGrotesk.variable}`}
     >
-      <body className="font-cabinet font-normal overflow-x-hidden cursor-none bg-d-white dark:bg-dark">
+      <head />
+      <body>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <CustomCursor />
-        <Provider>
-            {children}
-            <div>
-              <BackToTop/>
-            </div>
-
-                <div>
-                    <Copyright/>
-                </div>
-        </Provider>
+        {children}
       </body>
     </html>
   );

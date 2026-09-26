@@ -14,10 +14,17 @@ import {
   SiVercel,
   SiBetterauth,
   SiJsonwebtokens,
-  SiNetlify
+  SiNetlify,
+  SiFramer,
+  SiFigma,
+  SiDocker,
+  SiRailway,
+  SiSocketdotio,
+  SiSwagger,
+  SiShadcnui,
+  SiRedis,
 } from "react-icons/si";
 import { FaCcStripe, FaGitAlt, FaStripe } from "react-icons/fa";
-import { SiShadcnui } from "react-icons/si";
 
 export const techIconMap = {
   TypeScript: SiTypescript,
@@ -26,8 +33,10 @@ export const techIconMap = {
   React: SiReact,
   "Node.js": SiNodedotjs,
   Tailwind: SiTailwindcss,
+  "Tailwind CSS": SiTailwindcss,
   Firebase: SiFirebase,
   Redux: SiRedux,
+  "Redux Toolkit": SiRedux,
   PostgreSQL: SiPostgresql,
   Python: SiPython,
   JavaScript: SiJavascript,
@@ -35,15 +44,23 @@ export const techIconMap = {
   Razorpay: FaCcStripe,
   Git: FaGitAlt,
   "shadcn/ui": SiShadcnui,
-  Cloudinary: SiNextdotjs, 
-  Recharts: SiReact, 
-  JWT: SiJsonwebtokens, 
+  Cloudinary: SiSwagger,
+  Recharts: SiReact,
+  JWT: SiJsonwebtokens,
   Vercel: SiVercel,
   BetterAuth: SiBetterauth,
+  "Better Auth": SiBetterauth,
   Netlify: SiNetlify,
   Stripe: FaStripe,
+  "Framer Motion": SiFramer,
+  Figma: SiFigma,
+  Docker: SiDocker,
+  Railway: SiRailway,
+  "Socket.io": SiSocketdotio,
+  "REST API": SiSwagger,
+  Redis: SiRedis,
 };
 
 export const getTechIcon = (techName) => {
-  return techIconMap[techName] || SiReact; 
+  return techIconMap[techName] || SiReact;
 };

@@ -1,14 +1,14 @@
-import { Briefcase, GanttChart, GripVertical, House, Mail, MessageSquareText, Shapes, User } from "lucide-react";
+import { BookOpen, Briefcase, GripVertical, House, Mail, Shapes, User, Workflow } from "lucide-react";
 import Link from "next/link";
 
 const AllPagesNav = () => {
     const links = [
         { name: "Home", href: "/", icon: House },
         { name: "Projects", href: "/projects", icon: GripVertical },
-        { name: "About", href: "/#about", icon: User },
         { name: "Skills", href: "/#skills", icon: Shapes },
-        { name: "Services", href: "/#services", icon: GanttChart },
-        { name: "Testimonials", href: "/#testimonials", icon: MessageSquareText },
+        { name: "About", href: "/#about", icon: User },
+        { name: "Services", href: "/#services", icon: Workflow },
+        { name: "Journey", href: "/#journey", icon: BookOpen },
         { name: "Resume", href: "/resume", icon: Briefcase },
         { name: "Contact", href: "/#contact", icon: Mail },
     ];

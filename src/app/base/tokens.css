@@ -1,0 +1,92 @@
+/* ============================================================
+   Global design tokens
+   Default (no attribute) = dark; html[data-theme="light"] = light.
+   themeScript sets html[data-theme] before first paint.
+   ============================================================ */
+:root {
+  --bg: #0a0c0f;
+  --bg-elev: #14171c;
+  --bg-elev-2: #1b1f25;
+  --line: rgba(236, 237, 239, 0.09);
+  --line-strong: rgba(236, 237, 239, 0.16);
+  --text: #eceef1;
+  --text-muted: #9aa1ab;
+  --text-faint: #5c6470;
+  --accent: #c9a24b;
+  --accent-ink: #0a0c0f;
+  --accent-2: #2f9c82;
+  --accent-2-ink: #eceef1;
+  --danger: #d1603d;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --radius-s: 6px;
+  --radius-m: 14px;
+  --radius-l: 26px;
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-s: 0.25s;
+  --dur-m: 0.5s;
+  --dur-l: 0.8s;
+  --background: #0a0c0f;
+  --foreground: #eceef1;
+}
+
+html[data-theme="light"] {
+  --bg: #f1efe9;
+  --bg-elev: #ffffff;
+  --bg-elev-2: #e9e6dd;
+  --line: rgba(10, 12, 15, 0.09);
+  --line-strong: rgba(10, 12, 15, 0.16);
+  --text: #14171c;
+  --text-muted: #565f6a;
+  --text-faint: #8a8f97;
+  --accent: #9c7a2e;
+  --accent-ink: #f1efe9;
+  --accent-2: #186b56;
+  --accent-2-ink: #f1efe9;
+  --shadow: 0 20px 60px rgba(20, 23, 28, 0.12);
+  --background: #f1efe9;
+  --foreground: #14171c;
+}
+
+html[data-theme="light"] .dark {
+  --background: #1f1f1f;
+  --foreground: #eef0ee;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.mono,
+.eyebrow,
+.tip,
+.idx,
+.cat,
+.meta,
+.label,
+.filter-btn {
+  font-family: "Space Mono", var(--font-space-mono), monospace;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Page shell shared by the non-home routes */
+.app-page {
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--dur-m) var(--ease), color var(--dur-m) var(--ease);
+}

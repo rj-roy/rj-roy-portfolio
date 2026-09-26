@@ -1,66 +1,70 @@
-'use client';
-import { useEffect, useRef, useState } from "react";
+"use client";
 
-const CustomCursor = () => {
-  const cursorRef = useRef(null);
-  const mouse = useRef({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
-  const [mounted, setMounted] = useState(false);
+import { useEffect, useRef } from "react";
+
+export default function CustomCursor() {
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || 'ontouchstart' in window) return;
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
 
-    const updateCursor = () => {
-      if (!cursorRef.current) return;
-      
-      cursorRef.current.style.transform = `translate3d(${mouse.current.x}px, ${mouse.current.y}px, 0)`;
-      cursorRef.current.style.opacity = '1';
-      
-      requestAnimationFrame(updateCursor);
+    const dot = dotRef.current;
+    const ring = ringRef.current;
+    if (!dot || !ring) return;
+
+    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    let ringX = mouse.x;
+    let ringY = mouse.y;
+    let raf = 0;
+    let visible = false;
+
+    const onMove = (e) => {
+      mouse = { x: e.clientX, y: e.clientY };
+      if (!visible) {
+        visible = true;
+        dot.style.opacity = "1";
+        ring.style.opacity = "1";
+        ringX = e.clientX;
+        ringY = e.clientY;
+      }
+      dot.style.transform = `translate3d(${mouse.x}px, ${mouse.y}px, 0) translate(-50%, -50%)`;
     };
 
-    const handleMouseMove = (e) => {
-      if (!mounted) setMounted(true);
-      mouse.current = { x: e.clientX, y: e.clientY };
-    };
-
-    const handleMouseOver = (e) => {
+    const onOver = (e) => {
       const target = e.target;
-      const isInteractive =
-        target.matches('a, button, input, select, textarea, [role="button"], .cursor-pointer') ||
-        !!target.closest('a, button, input, select, textarea, [role="button"], .cursor-pointer');
-      
-      setIsHovering(isInteractive); 
+      const interactive =
+        target.closest &&
+        target.closest(
+          'a, button, input, select, textarea, [role="button"], [data-detail], .pf-proj-card, .pf-note-card, .pf-skill'
+        );
+      ring.style.width = interactive ? "52px" : "34px";
+      ring.style.height = interactive ? "52px" : "34px";
     };
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    window.addEventListener('mouseover', handleMouseOver, { passive: true });
-    requestAnimationFrame(updateCursor);
+    const loop = () => {
+      ringX += (mouse.x - ringX) * 0.18;
+      ringY += (mouse.y - ringY) * 0.18;
+      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+      raf = requestAnimationFrame(loop);
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("mouseover", onOver, { passive: true });
+    raf = requestAnimationFrame(loop);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseover', handleMouseOver);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseover", onOver);
+      cancelAnimationFrame(raf);
     };
-  }, [mounted]);
-
-  if (!mounted) return null;
+  }, []);
 
   return (
-    <div
-      ref={cursorRef}
-      className={`fixed top-0 left-0 pointer-events-none z-99999
-        rounded-full mix-blend-difference
-        transition-all duration-200 ease-out
-        ${isHovering 
-          ? 'w-15 h-15 bg-white/90 border-2 border-black -mt-8 -ml-8'
-          : 'w-4 h-4 bg-[#00bdf7]'                               
-        }`}
-      style={{ 
-        opacity: 0,
-        // transform: `translate3d(${mouse.current.x}px, ${mouse.current.y}px, 0) translate(-50%, -50%)`
-      }}
-    />
+    <>
+      <div className="cursor-dot" ref={dotRef} aria-hidden="true" />
+      <div className="cursor-ring" ref={ringRef} aria-hidden="true" />
+    </>
   );
-};
-
-export default CustomCursor;
+}
